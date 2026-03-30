@@ -286,7 +286,7 @@ const MentionsTicker = () => {
   );
 };
 
-const FloatingLogoItem = ({ logo, scrollYProgress }: { logo: any; scrollYProgress: any }) => {
+const FloatingLogoItem = ({ logo, scrollYProgress }: { logo: any; scrollYProgress: any; key?: any }) => {
   const yParallax = useTransform(scrollYProgress, [0, 1], [0, -500 * logo.speed]);
   const smoothY = useSpring(yParallax, { stiffness: 50, damping: 20 });
 
