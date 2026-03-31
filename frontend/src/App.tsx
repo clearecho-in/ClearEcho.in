@@ -4,7 +4,7 @@ import { Toaster, toast } from 'sonner';
 
 const ClearEchoLogo = ({ className }: { className?: string }) => (
   <img 
-    src="/logo.png" 
+    src={`${import.meta.env.BASE_URL}logo.png`}
     alt="ClearEcho Logo" 
     className={className} 
     style={{ objectFit: 'contain' }}
@@ -1412,7 +1412,8 @@ const AppointmentSection = () => {
                     <label className="block text-xs md:text-sm font-semibold mb-1.5 md:mb-2 text-black">Preferred Date</label>
                     <input 
                       required
-                      type="date" 
+                      type="date"
+                      min={new Date().toISOString().split('T')[0]}
                       className="w-full px-4 py-2.5 md:py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-black text-sm md:text-base"
                       value={formState.date}
                       onChange={(e) => setFormState({...formState, date: e.target.value})}
@@ -1505,19 +1506,10 @@ const ContactSection = () => {
                 </div>
                 <div>
                   <h4 className="font-bold mb-0.5 md:mb-1 text-white text-sm md:text-base">Email us</h4>
-                  <p className="text-gray-400 text-xs md:text-base">tanushsharma@clearecho.in</p>
+                  <p className="text-gray-400 text-xs md:text-base">contact@clearecho.in</p>
                 </div>
               </div>
-              
-              <div className="flex items-start gap-4">
-                <div className="w-9 h-9 md:w-12 md:h-12 rounded-xl bg-white/5 flex items-center justify-center text-blue-400 shrink-0">
-                  <Phone size={18} className="md:w-[24px] md:h-[24px]" />
-                </div>
-                <div>
-                  <h4 className="font-bold mb-0.5 md:mb-1 text-white text-sm md:text-base">Call us</h4>
-                  <p className="text-gray-400 text-xs md:text-base">+91 9093235743</p>
-                </div>
-              </div>
+
             </div>
           </div>
           
@@ -1714,7 +1706,7 @@ const PrivacyModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
 
       <section>
         <h4 className="text-white font-bold mb-3 uppercase tracking-wider text-sm">4. Your Rights (GDPR)</h4>
-        <p className="mb-4">If you are in the EEA, you have the right to access, correct, or delete your data. To exercise these rights, contact us at tanushsharma@clearecho.in.</p>
+        <p className="mb-4">If you are in the EEA, you have the right to access, correct, or delete your data. To exercise these rights, contact us at contact@clearecho.in.</p>
       </section>
 
       <section>
@@ -1739,7 +1731,7 @@ const PrivacyModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
 
       <section>
         <h4 className="text-white font-bold mb-3 uppercase tracking-wider text-sm">12. Contact Us</h4>
-        <p>If you have any questions regarding your privacy, please contact: tanushsharma@clearecho.in</p>
+        <p>If you have any questions regarding your privacy, please contact: contact@clearecho.in</p>
       </section>
     </div>
   </Modal>
@@ -1775,7 +1767,7 @@ const TermsModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
         <p>We reserve the right to terminate or suspend access to our service immediately, without prior notice, for any reason whatsoever.</p>
       </section>
 
-      <p className="text-sm italic pt-4 border-t border-white/5">For full legal inquiries, please contact tanushsharma@clearecho.in.</p>
+      <p className="text-sm italic pt-4 border-t border-white/5">For full legal inquiries, please contact contact@clearecho.in.</p>
     </div>
   </Modal>
 );

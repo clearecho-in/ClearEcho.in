@@ -19,22 +19,35 @@ app.use((req, res, next) => {
 // ── Resend Configuration ──────────────────────────────────────────────────────
 const cleanEnv = (val) => (val || '').replace(/^["']|["']$/g, '').trim();
 
-const resend = new Resend(cleanEnv(process.env.RESEND_API_KEY));
+const resendKey = cleanEnv(process.env.RESEND_API_KEY);
+let resend;
+if (resendKey) {
+  resend = new Resend(resendKey);
+} else {
+  console.warn("⚠️  RESEND_API_KEY is missing. Email sending requests will fail.");
+}
 
-const recips = (cleanEnv(process.env.NOTIFY_EMAIL) || 'tanushsharma@clearecho.in')
+const recips = (cleanEnv(process.env.NOTIFY_EMAIL) || 'contact@clearecho.in')
   .split(',')
   .map(email => email.trim());
 
-const NOTIFY_EMAIL = cleanEnv(process.env.NOTIFY_EMAIL) || 'tanushsharma@clearecho.in';
+const NOTIFY_EMAIL = cleanEnv(process.env.NOTIFY_EMAIL) || 'contact@clearecho.in';
 
 // ── Helper ────────────────────────────────────────────────────────────────────
 async function sendMail(subject, html, text, customerName = 'System', customerEmail = null) {
+  if (!resend) {
+    throw new Error("Resend API key is not configured. Please add RESEND_API_KEY to your .env file or Render dashboard.");
+  }
+
   const uniqueId = Math.floor(100000 + Math.random() * 900000);
   const finalSubject = `[#${uniqueId}] ${subject}`;
   
   // Resend requires verified domains, OR 'onboarding@resend.dev' for testing.
   // When using onboarding@resend.dev, the "to" email MUST be the one registered on your Resend account!
   const fromEmail = `ClearEcho <onboarding@resend.dev>`;
+
+  let successCount = 0;
+  let lastError = null;
 
   for (const recip of recips) {
     try {
@@ -49,12 +62,19 @@ async function sendMail(subject, html, text, customerName = 'System', customerEm
       
       if (error) {
         console.error(`❌ [#${uniqueId}] Failed to send email to ${recip}:`, error);
+        lastError = error;
       } else {
         console.log(`✅ [#${uniqueId}] Delivery processing to: ${recip}`);
+        successCount++;
       }
     } catch (sendErr) {
       console.error(`❌ [#${uniqueId}] Exception sending email to ${recip}:`, sendErr.message);
+      lastError = sendErr;
     }
+  }
+
+  if (successCount === 0 && recips.length > 0) {
+    throw new Error(lastError ? lastError.message : "Failed to send to any recipients");
   }
 }
 
@@ -93,7 +113,7 @@ app.post('/api/contact', async (req, res) => {
           </div>
         </div>
         <div style="background: #f9fafb; padding: 16px 32px; text-align: center; color: #9ca3af; font-size: 12px;">
-          ClearEcho — Community Authority Engine &nbsp;|&nbsp; tanushsharma@clearecho.in
+          ClearEcho — Community Authority Engine &nbsp;|&nbsp; contact@clearecho.in
         </div>
       </div>
     `;
@@ -119,6 +139,14 @@ app.post('/api/appointment', async (req, res) => {
 
   if (!name || !email || !date) {
     return res.status(400).json({ error: 'All fields are required.' });
+  }
+
+  const appointmentDate = new Date(date);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  if (appointmentDate < today) {
+    return res.status(400).json({ error: 'Appointments cannot be booked for past dates.' });
   }
 
   const formatted = new Date(date).toLocaleDateString('en-IN', {
@@ -152,7 +180,7 @@ app.post('/api/appointment', async (req, res) => {
           </div>
         </div>
         <div style="background: #f9fafb; padding: 16px 32px; text-align: center; color: #9ca3af; font-size: 12px;">
-          ClearEcho — Community Authority Engine &nbsp;|&nbsp; tanushsharma@clearecho.in
+          ClearEcho — Community Authority Engine &nbsp;|&nbsp; contact@clearecho.in
         </div>
       </div>
     `;
