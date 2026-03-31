@@ -1,5 +1,5 @@
 import express from 'express';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -16,56 +16,44 @@ app.use((req, res, next) => {
   next();
 });
 
-// ── Nodemailer transporter ────────────────────────────────────────────────────
+// ── Resend Configuration ──────────────────────────────────────────────────────
 const cleanEnv = (val) => (val || '').replace(/^["']|["']$/g, '').trim();
 
-const transporter = nodemailer.createTransport({
-  host: cleanEnv(process.env.SMTP_HOST) || 'smtp.gmail.com',
-  port: parseInt(cleanEnv(process.env.SMTP_PORT)) || 587,
-  secure: cleanEnv(process.env.SMTP_SECURE) === 'true', // true = 465, false = other ports
-  auth: {
-    user: cleanEnv(process.env.SMTP_USER),
-    pass: cleanEnv(process.env.SMTP_PASS),
-  },
-  connectionTimeout: 10000, // Important: Don't hang forever if connection fails
-});
+const resend = new Resend(cleanEnv(process.env.RESEND_API_KEY));
 
 const recips = (cleanEnv(process.env.NOTIFY_EMAIL) || 'tanushsharma@clearecho.in')
   .split(',')
   .map(email => email.trim());
 
 const NOTIFY_EMAIL = cleanEnv(process.env.NOTIFY_EMAIL) || 'tanushsharma@clearecho.in';
-const FROM_EMAIL   = cleanEnv(process.env.SMTP_USER) || 'noreply@clearecho.in';
 
 // ── Helper ────────────────────────────────────────────────────────────────────
-async function sendMail(subject, html, text, customerName = 'System') {
+async function sendMail(subject, html, text, customerName = 'System', customerEmail = null) {
   const uniqueId = Math.floor(100000 + Math.random() * 900000);
   const finalSubject = `[#${uniqueId}] ${subject}`;
-  const timestamp = Date.now();
+  
+  // Resend requires verified domains, OR 'onboarding@resend.dev' for testing.
+  // When using onboarding@resend.dev, the "to" email MUST be the one registered on your Resend account!
+  const fromEmail = `ClearEcho <onboarding@resend.dev>`;
 
-  // We send separate emails to each recipient to ensure better delivery
   for (const recip of recips) {
     try {
-      await transporter.sendMail({
-        // TRICK: Using a "via" label and a unique Message-ID per recipient
-        from: `"${customerName} via ClearEcho" <${FROM_EMAIL}>`,
+      const { data, error } = await resend.emails.send({
+        from: fromEmail,
         to: recip,
-        replyTo: FROM_EMAIL,
+        reply_to: customerEmail || NOTIFY_EMAIL,
         subject: finalSubject,
-        text,
-        html,
-        priority: 'high',
-        messageId: `<${timestamp}.${uniqueId}.${recip.replace('@', '.')}@clearecho.in>`,
-        headers: {
-          'X-Priority': '1 (Highest)',
-          'X-MSMail-Priority': 'High',
-          'Importance': 'High',
-          'X-Entity-Ref-ID': uniqueId.toString()
-        }
+        html: html,
+        text: text
       });
-      console.log(`✅ [#${uniqueId}] Force-Inbox delivery to: ${recip}`);
+      
+      if (error) {
+        console.error(`❌ [#${uniqueId}] Failed to send email to ${recip}:`, error);
+      } else {
+        console.log(`✅ [#${uniqueId}] Delivery processing to: ${recip}`);
+      }
     } catch (sendErr) {
-      console.error(`❌ [#${uniqueId}] Failed to send email to ${recip}:`, sendErr.message);
+      console.error(`❌ [#${uniqueId}] Exception sending email to ${recip}:`, sendErr.message);
     }
   }
 }
@@ -114,7 +102,8 @@ app.post('/api/contact', async (req, res) => {
       `📬 New Contact Message from ${firstName} ${lastName}`,
       htmlContent,
       textContent,
-      `${firstName} ${lastName}`
+      `${firstName} ${lastName}`,
+      email
     );
 
     res.json({ success: true });
@@ -172,7 +161,8 @@ app.post('/api/appointment', async (req, res) => {
       `📅 New Appointment Request from ${name}`,
       htmlContent,
       textContent,
-      name
+      name,
+      email
     );
 
     res.json({ success: true });
