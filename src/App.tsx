@@ -3,26 +3,12 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionV
 import { Toaster, toast } from 'sonner';
 
 const ClearEchoLogo = ({ className }: { className?: string }) => (
-  <svg 
-    viewBox="0 0 100 100" 
-    className={className}
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <defs>
-      <linearGradient id="clearecho-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#60A5FA" />
-        <stop offset="50%" stopColor="#A855F7" />
-        <stop offset="100%" stopColor="#EC4899" />
-      </linearGradient>
-    </defs>
-    <path 
-      d="M 80 18 C 0 40, 0 60, 80 82" 
-      stroke="url(#clearecho-logo-grad)" 
-      strokeWidth="28" 
-      strokeLinecap="round" 
-      fill="none"
-    />
-  </svg>
+  <img 
+    src="/logo.png" 
+    alt="ClearEcho Logo" 
+    className={className} 
+    style={{ objectFit: 'contain' }}
+  />
 );
 
 import { 
@@ -133,15 +119,15 @@ const Navbar = () => {
     >
       <div className={`max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between transition-all duration-500 ${
         isScrolled 
-          ? "bg-black/40 backdrop-blur-2xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] mx-4 md:mx-auto" 
+          ? "bg-black/40 backdrop-blur-2xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] mx-2 sm:mx-4 md:mx-auto" 
           : "bg-transparent border-transparent"
       }`}>
         <div className="flex items-center gap-3 pl-2">
           <div className="relative">
-            <ClearEchoLogo className="w-8 h-8 md:w-10 md:h-10" />
+            <ClearEchoLogo className="w-11 h-11 md:w-14 md:h-14" />
           </div>
           <div className="flex flex-col">
-            <span className="text-xl md:text-2xl font-display font-extrabold tracking-tight text-white leading-none">ClearEcho</span>
+            <span className="text-2xl md:text-3xl font-display font-extrabold tracking-tight text-white leading-none">ClearEcho</span>
           </div>
         </div>
 
@@ -403,7 +389,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight leading-[1.1] md:leading-[1.05] mb-6 md:mb-8 text-gradient break-words"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight leading-[1.1] md:leading-[1.05] mb-6 md:mb-8 text-gradient break-words"
           >
             Dominate the web <br className="hidden sm:block" />
             Starting with Reddit
@@ -791,7 +777,7 @@ const RedditShowcase = () => {
           </motion.div>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {subreddits.map((sub, i) => (
             <motion.div
               key={i}
@@ -1104,7 +1090,7 @@ const RedditVsAds = () => {
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold mb-4 text-white p-2">Reddit vs. Traditional Ads</h2>
           <p className="text-gray-400">Why the world's smartest brands are shifting their budget to community authority.</p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {comparisons.map((item, i) => (
             <motion.div
               key={i}
@@ -1618,8 +1604,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex items-center gap-3">
-            <ClearEchoLogo className="w-8 h-8" />
-            <span className="text-lg font-display font-extrabold text-white tracking-tight">ClearEcho</span>
+            <ClearEchoLogo className="w-11 h-11" />
+            <span className="text-xl font-display font-extrabold text-white tracking-tight">ClearEcho</span>
           </div>
           
           <div className="flex items-center gap-8 text-sm text-gray-500">
@@ -1817,7 +1803,7 @@ const ScrollToTop = () => {
           whileHover={{ scale: 1.1, y: -5 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 p-3 md:p-4 rounded-full bg-blue-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.5)] border border-blue-400/20 backdrop-blur-md transition-shadow hover:shadow-[0_0_30px_rgba(59,130,246,0.7)]"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-50 p-3 md:p-4 rounded-full bg-blue-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.5)] border border-blue-400/20 backdrop-blur-md transition-shadow hover:shadow-[0_0_30px_rgba(59,130,246,0.7)]"
           aria-label="Scroll to top"
         >
           <ArrowUp className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />
@@ -1883,7 +1869,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white selection:bg-blue-500/30 dot-grid overflow-x-hidden">
+    <div className="min-h-screen bg-[#050505] text-white selection:bg-blue-500/30 dot-grid overflow-x-hidden relative w-full">
       <ScrollProgress />
       <Navbar />
       <main className="relative">

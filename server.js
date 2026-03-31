@@ -27,17 +27,44 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const recips = (process.env.NOTIFY_EMAIL || 'tanushsharma@clearecho.in')
+  .split(',')
+  .map(email => email.trim());
+
 const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'tanushsharma@clearecho.in';
 const FROM_EMAIL   = process.env.SMTP_USER || 'noreply@clearecho.in';
 
 // ── Helper ────────────────────────────────────────────────────────────────────
-async function sendMail(subject, html) {
-  await transporter.sendMail({
-    from: `"ClearEcho" <${FROM_EMAIL}>`,
-    to: NOTIFY_EMAIL,
-    subject,
-    html,
-  });
+async function sendMail(subject, html, text, customerName = 'System') {
+  const uniqueId = Math.floor(100000 + Math.random() * 900000);
+  const finalSubject = `[#${uniqueId}] ${subject}`;
+  const timestamp = Date.now();
+
+  // We send separate emails to each recipient to ensure better delivery
+  for (const recip of recips) {
+    try {
+      await transporter.sendMail({
+        // TRICK: Using a "via" label and a unique Message-ID per recipient
+        from: `"${customerName} via ClearEcho" <${FROM_EMAIL}>`,
+        to: recip,
+        replyTo: FROM_EMAIL,
+        subject: finalSubject,
+        text,
+        html,
+        priority: 'high',
+        messageId: `<${timestamp}.${uniqueId}.${recip.replace('@', '.')}@clearecho.in>`,
+        headers: {
+          'X-Priority': '1 (Highest)',
+          'X-MSMail-Priority': 'High',
+          'Importance': 'High',
+          'X-Entity-Ref-ID': uniqueId.toString()
+        }
+      });
+      console.log(`✅ [#${uniqueId}] Force-Inbox delivery to: ${recip}`);
+    } catch (sendErr) {
+      console.error(`❌ [#${uniqueId}] Failed to send email to ${recip}:`, sendErr.message);
+    }
+  }
 }
 
 // ── POST /api/contact ─────────────────────────────────────────────────────────
@@ -49,9 +76,8 @@ app.post('/api/contact', async (req, res) => {
   }
 
   try {
-    await sendMail(
-      `📬 New Contact Message from ${firstName} ${lastName}`,
-      `
+    const textContent = ` ClearEcho — New Contact Message\n\nName: ${firstName} ${lastName}\nEmail: ${email}\nMessage: ${message}\n\nReply directly to: ${email}`;
+    const htmlContent = `
       <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
         <div style="background: #0a0a0a; padding: 24px 32px;">
           <h2 style="color: #60a5fa; margin: 0; font-size: 20px;">ClearEcho — New Contact Message</h2>
@@ -79,7 +105,13 @@ app.post('/api/contact', async (req, res) => {
           ClearEcho — Community Authority Engine &nbsp;|&nbsp; tanushsharma@clearecho.in
         </div>
       </div>
-      `
+    `;
+
+    await sendMail(
+      `📬 New Contact Message from ${firstName} ${lastName}`,
+      htmlContent,
+      textContent,
+      `${firstName} ${lastName}`
     );
 
     res.json({ success: true });
@@ -102,9 +134,8 @@ app.post('/api/appointment', async (req, res) => {
   });
 
   try {
-    await sendMail(
-      `📅 New Appointment Request from ${name}`,
-      `
+    const textContent = `📅 ClearEcho — New Appointment Request\n\nName: ${name}\nEmail: ${email}\nDate: ${formatted}\n\nConfirm or reschedule by replying to: ${email}`;
+    const htmlContent = `
       <div style="font-family: sans-serif; max-width: 600px; margin: auto; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
         <div style="background: #0a0a0a; padding: 24px 32px;">
           <h2 style="color: #60a5fa; margin: 0; font-size: 20px;">ClearEcho — New Appointment Request</h2>
@@ -132,7 +163,13 @@ app.post('/api/appointment', async (req, res) => {
           ClearEcho — Community Authority Engine &nbsp;|&nbsp; tanushsharma@clearecho.in
         </div>
       </div>
-      `
+    `;
+
+    await sendMail(
+      `📅 New Appointment Request from ${name}`,
+      htmlContent,
+      textContent,
+      name
     );
 
     res.json({ success: true });
@@ -142,8 +179,9 @@ app.post('/api/appointment', async (req, res) => {
   }
 });
 
-// ── Start ─────────────────────────────────────────────────────────────────────
+// â”€â”€ Start â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const PORT = process.env.API_PORT || 3001;
+
 app.listen(PORT, () => {
   console.log(`✅ ClearEcho API server running on http://localhost:${PORT}`);
 });
