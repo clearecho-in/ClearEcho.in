@@ -1321,7 +1321,8 @@ const AppointmentSection = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/appointment', {
+      const API_URL = import.meta.env.VITE_API_URL || '';
+      const response = await fetch(`${API_URL}/api/appointment`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -1454,7 +1455,8 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/contact', {
+      const API_URL = import.meta.env.VITE_API_URL || '';
+      const response = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
