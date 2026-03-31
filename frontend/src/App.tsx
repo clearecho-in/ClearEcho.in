@@ -431,7 +431,6 @@ const Hero = () => {
         {/* Floating Glass Cards */}
         <div className="mt-12 md:mt-24 grid sm:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto px-4 sm:px-6">
           <motion.div 
-            style={{ y: typeof window !== 'undefined' && window.innerWidth > 768 ? smoothY2 : 0 }}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
@@ -452,7 +451,6 @@ const Hero = () => {
           </motion.div>
 
           <motion.div 
-            style={{ y: typeof window !== 'undefined' && window.innerWidth > 768 ? smoothY3 : 0 }}
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
