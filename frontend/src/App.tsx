@@ -51,7 +51,7 @@ const SectionLabel = ({ number, text }: { number: string; text: string }) => (
   >
     <div className="flex items-center gap-4 md:gap-6">
       <div className="flex flex-col">
-        <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.2em] text-blue-500/60 mb-1">Index</span>
+        <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.2em] text-orange-500/60 mb-1">Index</span>
         <span className="text-xl md:text-2xl font-display font-extrabold tracking-tighter text-white/90 leading-none">{number}</span>
       </div>
       <div className="h-8 md:h-12 w-[1px] bg-white/10" />
@@ -141,16 +141,16 @@ const Navbar = () => {
                 scale: 1.05,
                 y: -2,
                 color: "rgb(255, 255, 255)",
-                textShadow: "0 0 8px rgba(59, 130, 246, 0.5)"
+                textShadow: "0 0 8px rgba(255, 69, 0, 0.5)"
               }}
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
               className="group relative flex items-center gap-1.5 lg:gap-2 text-xs lg:text-sm font-bold text-white/90 hover:text-white transition-colors"
             >
-              <span className="text-[9px] lg:text-[10px] font-black text-blue-500 group-hover:text-blue-400 transition-colors tracking-tighter">{link.id}</span>
+              <span className="text-[9px] lg:text-[10px] font-black text-orange-500 group-hover:text-orange-400 transition-colors tracking-tighter">{link.id}</span>
               <span>{link.name}</span>
               <motion.div 
-                className="absolute -bottom-1 left-0 right-0 h-[2px] bg-blue-500 rounded-full origin-left"
+                className="absolute -bottom-1 left-0 right-0 h-[2px] bg-orange-500 rounded-full origin-left"
                 initial={{ scaleX: 0 }}
                 whileHover={{ scaleX: 1 }}
                 transition={{ duration: 0.3 }}
@@ -166,8 +166,8 @@ const Navbar = () => {
             whileHover={{ 
               scale: 1.05,
               y: -2,
-              boxShadow: "0 10px 25px rgba(59, 130, 246, 0.4)",
-              backgroundColor: "rgb(59, 130, 246)",
+              boxShadow: "0 10px 25px rgba(255, 69, 0, 0.4)",
+              backgroundColor: "rgb(255, 69, 0)",
               color: "rgb(255, 255, 255)"
             }}
             whileTap={{ scale: 0.95 }}
@@ -208,7 +208,7 @@ const Navbar = () => {
                   onClick={() => setIsOpen(false)}
                   className="flex items-center gap-4 text-lg font-bold text-gray-400 hover:text-white transition-colors"
                 >
-                  <span className="text-[10px] font-bold text-blue-500/50">{link.id}</span>
+                  <span className="text-[10px] font-bold text-orange-500/50">{link.id}</span>
                   {link.name}
                 </a>
               ))}
@@ -252,7 +252,7 @@ const MentionsTicker = () => {
   ];
 
   return (
-    <div className="bg-blue-500/5 border-y border-white/5 py-4 overflow-hidden relative">
+    <div className="bg-orange-500/5 border-y border-white/5 py-4 overflow-hidden relative">
       <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-10" />
       <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-10" />
       
@@ -380,7 +380,7 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-blue-400 text-xs font-bold uppercase tracking-widest mb-10 backdrop-blur-md">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-orange-400 text-xs font-bold uppercase tracking-widest mb-10 backdrop-blur-md">
             <Zap size={14} />
             <span>Community Authority Engine</span>
           </div>
@@ -415,8 +415,8 @@ const Hero = () => {
               whileHover={{ 
                 scale: 1.05,
                 y: -2,
-                boxShadow: "0 10px 25px rgba(59, 130, 246, 0.4)",
-                backgroundColor: "rgb(59, 130, 246)",
+                boxShadow: "0 10px 25px rgba(255, 69, 0, 0.4)",
+                backgroundColor: "rgb(255, 69, 0)",
                 color: "rgb(255, 255, 255)"
               }}
               whileTap={{ scale: 0.95 }}
@@ -437,7 +437,7 @@ const Hero = () => {
             transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
             className="glass-card p-5 sm:p-8 rounded-[2rem] md:rounded-[2.5rem] text-left relative overflow-hidden group"
           >
-            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 blur-3xl rounded-full -mr-10 -mt-10 group-hover:bg-blue-500/20 transition-all" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/10 blur-3xl rounded-full -mr-10 -mt-10 group-hover:bg-orange-500/20 transition-all" />
             <div className="text-[10px] md:text-sm text-gray-400 font-medium mb-1 md:mb-2 uppercase tracking-wider">AI Visibility Score</div>
             <div className="text-3xl md:text-4xl font-bold mb-3 md:mb-4 text-white">94.8%</div>
             <div className="flex items-center gap-2 text-green-400 text-xs md:text-sm font-bold mb-6 md:mb-8">
@@ -447,7 +447,7 @@ const Hero = () => {
             <div className="flex flex-wrap gap-2 md:gap-3">
               <button className="flex-1 min-w-fit px-3 md:px-4 py-1.5 md:py-2 bg-white/10 rounded-full text-[10px] md:text-xs font-bold hover:bg-white/20 transition-all text-white whitespace-nowrap">View Audit</button>
               <button className="flex-1 min-w-fit px-3 md:px-4 py-1.5 md:py-2 bg-white/10 rounded-full text-[10px] md:text-xs font-bold hover:bg-white/20 transition-all text-white whitespace-nowrap">Optimize</button>
-              <button className="flex-1 min-w-fit px-3 md:px-4 py-1.5 md:py-2 bg-blue-500/20 text-blue-400 rounded-full text-[10px] md:text-xs font-bold hover:bg-blue-500/30 transition-all whitespace-nowrap">Scale Now</button>
+              <button className="flex-1 min-w-fit px-3 md:px-4 py-1.5 md:py-2 bg-orange-500/20 text-orange-400 rounded-full text-[10px] md:text-xs font-bold hover:bg-orange-500/30 transition-all whitespace-nowrap">Scale Now</button>
             </div>
           </motion.div>
 
@@ -530,7 +530,7 @@ const AIVisibility = () => {
             viewport={{ once: true }}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 md:mb-6 leading-tight text-white">
-              Get Recommended by <span className="text-blue-400">AI Models</span>. <br className="hidden md:block" />
+              Get Recommended by <span className="text-orange-400">AI Models</span>. <br className="hidden md:block" />
               Be the Top Choice.
             </h2>
             <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
@@ -539,7 +539,7 @@ const AIVisibility = () => {
             
             <div className="space-y-5 md:space-y-6">
               <div className="flex items-start gap-4">
-                <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0">
+                <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-400 shrink-0">
                   <Globe size={18} className="md:w-5 md:h-5" />
                 </div>
                 <div>
@@ -573,7 +573,7 @@ const AIVisibility = () => {
                   <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-yellow-500" />
                   <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-green-500" />
                 </div>
-                <div className="px-2 md:px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-[8px] md:text-[10px] font-bold uppercase tracking-widest">
+                <div className="px-2 md:px-3 py-1 rounded-full bg-orange-500/10 text-orange-400 text-[8px] md:text-[10px] font-bold uppercase tracking-widest">
                   AI Engine v4.2 Active
                 </div>
               </div>
@@ -587,7 +587,7 @@ const AIVisibility = () => {
                       {step.status === 'complete' ? (
                         <CheckCircle2 size={16} className="text-green-500 md:w-[18px] md:h-[18px]" />
                       ) : step.status === 'active' ? (
-                        <div className="w-3.5 h-3.5 md:w-4 md:h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                        <div className="w-3.5 h-3.5 md:w-4 md:h-4 border-2 border-orange-500 border-t-transparent rounded-full animate-spin" />
                       ) : (
                         <div className="w-3.5 h-3.5 md:w-4 md:h-4 rounded-full border-2 border-gray-700" />
                       )}
@@ -601,7 +601,7 @@ const AIVisibility = () => {
               </div>
 
               {/* Live Graph Simulation */}
-              <div className="mt-6 md:mt-8 p-3 md:p-4 rounded-xl bg-blue-500/5 border border-blue-500/10 relative">
+              <div className="mt-6 md:mt-8 p-3 md:p-4 rounded-xl bg-orange-500/5 border border-orange-500/10 relative">
                 <CornerAccent />
                 <div className="flex justify-between items-end h-16 md:h-24 gap-1">
                   {[40, 70, 45, 90, 65, 80, 50, 85, 95, 60].map((h, i) => (
@@ -610,11 +610,11 @@ const AIVisibility = () => {
                       initial={{ height: 0 }}
                       animate={{ height: `${h}%` }}
                       transition={{ duration: 1, delay: i * 0.1, repeat: Infinity, repeatType: 'reverse' }}
-                      className="flex-1 bg-blue-500/40 rounded-t-sm"
+                      className="flex-1 bg-orange-500/40 rounded-t-sm"
                     />
                   ))}
                 </div>
-                <div className="mt-2 md:mt-3 flex justify-between text-[8px] md:text-[10px] font-bold text-blue-400/60">
+                <div className="mt-2 md:mt-3 flex justify-between text-[8px] md:text-[10px] font-bold text-orange-400/60">
                   <span>08:00</span>
                   <span>LIVE FEED</span>
                   <span>09:30</span>
@@ -648,7 +648,7 @@ const WhyReddit = () => {
     {
       title: "Reddit is the Foundation",
       description: "Reddit is where real people talk. It's the most trusted place to build your brand's reputation before moving to other platforms.",
-      icon: <Shield className="text-blue-400" />
+      icon: <Shield className="text-orange-400" />
     },
     {
       title: "The AI Secret Sauce",
@@ -674,7 +674,7 @@ const WhyReddit = () => {
         <div className="flex flex-col md:flex-row gap-12 lg:gap-16 items-center">
           <div className="md:w-1/2">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold mb-4 md:mb-6 leading-tight text-white">
-              Why We Start With <span className="text-blue-400">Reddit</span>
+              Why We Start With <span className="text-orange-400">Reddit</span>
             </h2>
             <p className="text-gray-400 text-sm md:text-lg mb-8 md:mb-10 leading-relaxed">
               Reddit is the only place where you can build deep trust with your audience. We use Reddit as your launchpad, then expand your reach across the entire social web.
@@ -688,13 +688,13 @@ const WhyReddit = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
                   viewport={{ once: true }}
-                  className="group glass-card p-5 md:p-6 rounded-2xl border-white/5 hover:border-blue-500/20 relative"
+                  className="group glass-card p-5 md:p-6 rounded-2xl border-white/5 hover:border-orange-500/20 relative"
                 >
                   <CornerAccent />
                   <motion.div 
-                    whileHover={{ scale: 1.15, rotate: 8, boxShadow: "0 0 20px rgba(59, 130, 246, 0.3)" }}
+                    whileHover={{ scale: 1.15, rotate: 8, boxShadow: "0 0 20px rgba(255, 69, 0, 0.3)" }}
                     transition={{ type: "spring", stiffness: 300, damping: 15 }}
-                    className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 flex items-center justify-center mb-4 md:mb-6 group-hover:bg-blue-500/20 transition-colors cursor-pointer"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 flex items-center justify-center mb-4 md:mb-6 group-hover:bg-orange-500/20 transition-colors cursor-pointer"
                   >
                     {React.cloneElement(reason.icon as React.ReactElement, { size: 18, className: "md:w-6 md:h-6" })}
                   </motion.div>
@@ -742,7 +742,7 @@ const RedditShowcase = () => {
       members: "1.2M",
       active: "2.1K",
       trending: true,
-      color: "bg-blue-500"
+      color: "bg-orange-500"
     },
     {
       name: "r/marketing",
@@ -799,7 +799,7 @@ const RedditShowcase = () => {
                 )}
               </div>
               
-              <h3 className="text-xl font-bold mb-1 text-white group-hover:text-blue-400 transition-colors">{sub.name}</h3>
+              <h3 className="text-xl font-bold mb-1 text-white group-hover:text-orange-400 transition-colors">{sub.name}</h3>
               <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
                 <div className="flex items-center gap-1">
                   <Users size={14} />
@@ -821,7 +821,7 @@ const RedditShowcase = () => {
                     initial={{ width: 0 }}
                     whileInView={{ width: '75%' }}
                     transition={{ duration: 1, delay: 0.5 }}
-                    className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+                    className="h-full bg-gradient-to-r from-orange-500 to-purple-500"
                   />
                 </div>
               </div>
@@ -829,7 +829,7 @@ const RedditShowcase = () => {
           ))}
         </div>
 
-        <div className="mt-16 p-6 sm:p-8 rounded-[2.5rem] bg-gradient-to-r from-orange-500/10 to-blue-500/10 border border-white/5 flex flex-col lg:flex-row items-center justify-between gap-8">
+        <div className="mt-16 p-6 sm:p-8 rounded-[2.5rem] bg-gradient-to-r from-orange-500/10 to-orange-500/10 border border-white/5 flex flex-col lg:flex-row items-center justify-between gap-8">
           <div className="flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
             <div className="w-16 h-16 rounded-full bg-orange-500 flex-shrink-0 flex items-center justify-center text-white shadow-[0_0_30px_rgba(249,115,22,0.3)]">
               <Zap size={32} />
@@ -898,7 +898,7 @@ const RedditThreadSimulation = () => {
               </div>
               <span className="text-sm font-bold text-white">r/marketing • Posted by u/ClearEcho_Bot</span>
             </div>
-            <button className="px-4 py-1.5 bg-blue-500 text-white text-xs font-bold rounded-full hover:bg-blue-600 transition-all">
+            <button className="px-4 py-1.5 bg-orange-500 text-white text-xs font-bold rounded-full hover:bg-orange-600 transition-all">
               Join Discussion
             </button>
           </div>
@@ -928,7 +928,7 @@ const RedditThreadSimulation = () => {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ delay: j * 0.2 }}
                       viewport={{ once: true }}
-                      className={`p-3 md:p-4 rounded-xl md:rounded-2xl transition-all ${reply.isHighlighted ? 'bg-blue-500/10 border border-blue-500/20' : 'bg-white/5 border border-white/5'}`}
+                      className={`p-3 md:p-4 rounded-xl md:rounded-2xl transition-all ${reply.isHighlighted ? 'bg-orange-500/10 border border-orange-500/20' : 'bg-white/5 border border-white/5'}`}
                     >
                       <div className="flex gap-2.5 md:gap-4">
                         <div className="flex flex-col items-center gap-1 pt-1">
@@ -938,7 +938,7 @@ const RedditThreadSimulation = () => {
                         <div className="flex-1">
                           <div className="flex flex-wrap items-center gap-1.5 md:gap-2 mb-1 md:mb-2">
                             <span className="text-[11px] md:text-sm font-bold text-white">u/{reply.user}</span>
-                            {reply.isHighlighted && <span className="px-1 py-0.5 rounded bg-blue-500/20 text-blue-400 text-[7px] md:text-[10px] font-bold uppercase">Brand Advocate</span>}
+                            {reply.isHighlighted && <span className="px-1 py-0.5 rounded bg-orange-500/20 text-orange-400 text-[7px] md:text-[10px] font-bold uppercase">Brand Advocate</span>}
                             <span className="text-[9px] md:text-xs text-gray-500">• {reply.time}</span>
                           </div>
                           <p className="text-gray-300 text-[10px] md:text-sm leading-relaxed">{reply.content}</p>
@@ -959,7 +959,7 @@ const RedditThreadSimulation = () => {
 const RedditAuthoritySection = () => {
   const cards = [
     {
-      icon: <History className="text-blue-400" />,
+      icon: <History className="text-orange-400" />,
       title: "Aged Accounts",
       description: "We use aged accounts. On Reddit, age equals trust. New accounts are immediately flagged as suspicious."
     },
@@ -987,7 +987,7 @@ const RedditAuthoritySection = () => {
               viewport={{ once: true }}
             >
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold mb-4 md:mb-6 text-white leading-tight">
-                The <span className="text-blue-500">Authority Barrier</span>: Why Most Reddit Marketing Fails
+                The <span className="text-orange-500">Authority Barrier</span>: Why Most Reddit Marketing Fails
               </h2>
               <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
                 Reddit is a community-driven platform with a zero-tolerance policy for bots and obvious marketing. "Normal" people find it impossible to promote their products because they lack the reputation required to be heard.
@@ -1007,20 +1007,20 @@ const RedditAuthoritySection = () => {
             </motion.div>
           </div>
           <div className="md:w-1/2 relative mt-8 md:mt-0">
-            <div className="relative rounded-2xl md:rounded-3xl overflow-hidden glass-card p-6 sm:p-8 border-blue-500/20">
+            <div className="relative rounded-2xl md:rounded-3xl overflow-hidden glass-card p-6 sm:p-8 border-orange-500/20">
               <CornerAccent />
               <div className="absolute top-0 right-0 p-4">
-                <ShieldCheck className="text-blue-500 w-10 h-10 md:w-12 md:h-12 opacity-20" />
+                <ShieldCheck className="text-orange-500 w-10 h-10 md:w-12 md:h-12 opacity-20" />
               </div>
               <h3 className="text-xl md:text-2xl font-bold text-white mb-6">Account Trust Profile</h3>
               <div className="space-y-5 md:space-y-6">
                 <div className="space-y-2">
                   <div className="flex justify-between text-xs md:text-sm">
                     <span className="text-gray-400">Account Age</span>
-                    <span className="text-blue-400">Aged</span>
+                    <span className="text-orange-400">Aged</span>
                   </div>
                   <div className="w-full h-1.5 md:h-2 bg-white/5 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-500 w-[90%]" />
+                    <div className="h-full bg-orange-500 w-[90%]" />
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -1042,14 +1042,14 @@ const RedditAuthoritySection = () => {
                   </div>
                 </div>
               </div>
-              <div className="mt-8 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
-                <p className="text-[10px] md:text-xs text-blue-300 italic leading-relaxed">
+              <div className="mt-8 p-4 rounded-xl bg-orange-500/10 border border-orange-500/20">
+                <p className="text-[10px] md:text-xs text-orange-300 italic leading-relaxed">
                   "This account has been a member of r/technology, r/startups, and r/marketing for years with consistent high-value contributions."
                 </p>
               </div>
             </div>
             {/* Decorative elements */}
-            <div className="absolute -bottom-6 -right-6 w-24 h-24 md:w-32 md:h-32 bg-blue-500/20 blur-3xl rounded-full" />
+            <div className="absolute -bottom-6 -right-6 w-24 h-24 md:w-32 md:h-32 bg-orange-500/20 blur-3xl rounded-full" />
             <div className="absolute -top-6 -left-6 w-24 h-24 md:w-32 md:h-32 bg-purple-500/20 blur-3xl rounded-full" />
           </div>
         </div>
@@ -1098,10 +1098,10 @@ const RedditVsAds = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
-              className="glass-card p-8 rounded-3xl border-white/5 hover:border-blue-500/30 transition-all relative"
+              className="glass-card p-8 rounded-3xl border-white/5 hover:border-orange-500/30 transition-all relative"
             >
               <CornerAccent />
-              <h4 className="text-blue-400 font-bold mb-4 uppercase tracking-widest text-xs">{item.feature}</h4>
+              <h4 className="text-orange-400 font-bold mb-4 uppercase tracking-widest text-xs">{item.feature}</h4>
               <div className="space-y-4">
                 <div>
                   <span className="text-[10px] text-gray-500 uppercase font-bold">ClearEcho Strategy</span>
@@ -1143,7 +1143,7 @@ const SuccessStats = () => {
               className="text-center"
             >
               <div className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-white mb-1 md:mb-2">{stat.value}</div>
-              <div className="text-blue-400 font-bold uppercase tracking-widest text-[9px] md:text-xs mb-1">{stat.label}</div>
+              <div className="text-orange-400 font-bold uppercase tracking-widest text-[9px] md:text-xs mb-1">{stat.label}</div>
               <div className="text-gray-500 text-[11px] md:text-sm">{stat.sub}</div>
             </motion.div>
           ))}
@@ -1156,7 +1156,7 @@ const SuccessStats = () => {
 const Features = () => {
   const features = [
     {
-      icon: <Shield className="text-blue-400" />,
+      icon: <Shield className="text-orange-400" />,
       title: "High-Authority Accounts",
       description: "We use aged, high-karma Reddit accounts to ensure your brand's presence is respected and never flagged."
     },
@@ -1192,7 +1192,7 @@ const Features = () => {
       <div className="max-w-7xl mx-auto px-6">
         <SectionLabel number="07" text="Capabilities" />
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <h2 className="text-2xl sm:text-3xl md:text-5xl font-display font-extrabold mb-6 tracking-tight text-white p-2">Why Choose <span className="text-blue-400">ClearEcho</span>?</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-display font-extrabold mb-6 tracking-tight text-white p-2">Why Choose <span className="text-orange-400">ClearEcho</span>?</h2>
           <p className="text-lg md:text-xl text-gray-400 leading-relaxed">
             We simplify your growth by starting where people trust most: Reddit. Then, we scale you everywhere else.
           </p>
@@ -1207,7 +1207,7 @@ const Features = () => {
               transition={{ delay: i * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className="p-6 sm:p-8 lg:p-10 glass-card rounded-[2rem] hover:border-blue-500/30 transition-all group relative"
+              className="p-6 sm:p-8 lg:p-10 glass-card rounded-[2rem] hover:border-orange-500/30 transition-all group relative"
             >
               <CornerAccent />
               <div className="w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 md:mb-8 group-hover:scale-110 transition-transform duration-300">
@@ -1219,10 +1219,10 @@ const Features = () => {
           ))}
         </div>
 
-        <div className="mt-20 p-6 sm:p-8 glass-card rounded-[2.5rem] text-white flex flex-col md:flex-row items-center justify-between gap-8 border-blue-500/20">
+        <div className="mt-20 p-6 sm:p-8 glass-card rounded-[2.5rem] text-white flex flex-col md:flex-row items-center justify-between gap-8 border-orange-500/20">
           <div className="max-w-xl text-center md:text-left">
             <h3 className="text-xl md:text-2xl font-bold mb-2">Not sure where to start?</h3>
-            <p className="text-blue-200">Get a free AI Visibility Audit and see how your brand ranks in the eyes of modern AI models.</p>
+            <p className="text-orange-200">Get a free AI Visibility Audit and see how your brand ranks in the eyes of modern AI models.</p>
           </div>
           <a href="#appointment" className="px-8 py-4 bg-white text-black font-bold rounded-2xl hover:bg-gray-200 transition-all whitespace-nowrap">
             Get My Free Audit
@@ -1284,7 +1284,7 @@ const FAQSection = () => {
                 <span className="text-lg md:text-xl font-bold text-white pr-8">
                   {faq.question}
                 </span>
-                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${openIndex === i ? 'bg-blue-500 text-white rotate-180' : 'bg-white/5 text-gray-400'}`}>
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${openIndex === i ? 'bg-orange-500 text-white rotate-180' : 'bg-white/5 text-gray-400'}`}>
                   <ChevronDown size={20} />
                 </div>
               </button>
@@ -1367,7 +1367,7 @@ const AppointmentSection = () => {
             <ul className="space-y-3 md:space-y-4">
               {['Reddit growth roadmap', 'AI visibility audit', 'Multi-channel content plan'].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-gray-300 text-xs sm:text-sm md:text-base">
-                  <CheckCircle2 size={16} className="text-blue-400 md:w-[20px] md:h-[20px]" />
+                  <CheckCircle2 size={16} className="text-orange-400 md:w-[20px] md:h-[20px]" />
                   {item}
                 </li>
               ))}
@@ -1392,7 +1392,7 @@ const AppointmentSection = () => {
                       required
                       type="text" 
                       placeholder="John Doe"
-                      className="w-full px-4 py-2.5 md:py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-black text-sm md:text-base"
+                      className="w-full px-4 py-2.5 md:py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all text-black text-sm md:text-base"
                       value={formState.name}
                       onChange={(e) => setFormState({...formState, name: e.target.value})}
                     />
@@ -1403,7 +1403,7 @@ const AppointmentSection = () => {
                       required
                       type="email" 
                       placeholder="john@company.com"
-                      className="w-full px-4 py-2.5 md:py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-black text-sm md:text-base"
+                      className="w-full px-4 py-2.5 md:py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all text-black text-sm md:text-base"
                       value={formState.email}
                       onChange={(e) => setFormState({...formState, email: e.target.value})}
                     />
@@ -1414,7 +1414,7 @@ const AppointmentSection = () => {
                       required
                       type="date"
                       min={new Date().toISOString().split('T')[0]}
-                      className="w-full px-4 py-2.5 md:py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all text-black text-sm md:text-base"
+                      className="w-full px-4 py-2.5 md:py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all text-black text-sm md:text-base"
                       value={formState.date}
                       onChange={(e) => setFormState({...formState, date: e.target.value})}
                     />
@@ -1501,7 +1501,7 @@ const ContactSection = () => {
             
             <div className="space-y-6 md:space-y-8">
               <div className="flex items-start gap-4">
-                <div className="w-9 h-9 md:w-12 md:h-12 rounded-xl bg-white/5 flex items-center justify-center text-blue-400 shrink-0">
+                <div className="w-9 h-9 md:w-12 md:h-12 rounded-xl bg-white/5 flex items-center justify-center text-orange-400 shrink-0">
                   <Mail size={18} className="md:w-[24px] md:h-[24px]" />
                 </div>
                 <div>
@@ -1517,7 +1517,7 @@ const ContactSection = () => {
             <CornerAccent />
             {submitted ? (
               <div className="text-center py-8 md:py-12">
-                <div className="w-12 h-12 md:w-16 md:h-16 bg-blue-500/20 text-blue-400 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-orange-500/20 text-orange-400 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
                   <CheckCircle2 size={24} className="md:w-[32px] md:h-[32px]" />
                 </div>
                 <h3 className="text-xl md:text-2xl font-bold mb-2 text-white">Message Sent!</h3>
@@ -1533,7 +1533,7 @@ const ContactSection = () => {
                       type="text" 
                       value={formState.firstName}
                       onChange={(e) => setFormState({...formState, firstName: e.target.value})}
-                      className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white text-sm md:text-base" 
+                      className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500 text-white text-sm md:text-base" 
                     />
                   </div>
                   <div>
@@ -1543,7 +1543,7 @@ const ContactSection = () => {
                       type="text" 
                       value={formState.lastName}
                       onChange={(e) => setFormState({...formState, lastName: e.target.value})}
-                      className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white text-sm md:text-base" 
+                      className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500 text-white text-sm md:text-base" 
                     />
                   </div>
                 </div>
@@ -1554,7 +1554,7 @@ const ContactSection = () => {
                     type="email" 
                     value={formState.email}
                     onChange={(e) => setFormState({...formState, email: e.target.value})}
-                    className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white text-sm md:text-base" 
+                    className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500 text-white text-sm md:text-base" 
                   />
                 </div>
                 <div>
@@ -1564,7 +1564,7 @@ const ContactSection = () => {
                     rows={4} 
                     value={formState.message}
                     onChange={(e) => setFormState({...formState, message: e.target.value})}
-                    className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500 text-white text-sm md:text-base"
+                    className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500 text-white text-sm md:text-base"
                   ></textarea>
                 </div>
                 <button 
@@ -1797,7 +1797,7 @@ const ScrollToTop = () => {
           whileHover={{ scale: 1.1, y: -5 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToTop}
-          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-50 p-3 md:p-4 rounded-full bg-blue-500 text-white shadow-[0_0_20px_rgba(59,130,246,0.5)] border border-blue-400/20 backdrop-blur-md transition-shadow hover:shadow-[0_0_30px_rgba(59,130,246,0.7)]"
+          className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-8 md:right-8 z-50 p-3 md:p-4 rounded-full bg-orange-500 text-white shadow-[0_0_20px_rgba(255, 69, 0,0.5)] border border-orange-400/20 backdrop-blur-md transition-shadow hover:shadow-[0_0_30px_rgba(255, 69, 0,0.7)]"
           aria-label="Scroll to top"
         >
           <ArrowUp className="w-5 h-5 md:w-6 md:h-6" strokeWidth={2.5} />
@@ -1817,7 +1817,7 @@ const ScrollProgress = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-blue-500 origin-left z-[100]"
+      className="fixed top-0 left-0 right-0 h-1 bg-orange-500 origin-left z-[100]"
       style={{ scaleX }}
     />
   );
@@ -1843,12 +1843,12 @@ export default function App() {
           className="relative"
         >
           <ClearEchoLogo className="w-20 h-20 mb-8" />
-          <div className="absolute inset-0 blur-2xl bg-blue-500/20 rounded-full animate-pulse" />
+          <div className="absolute inset-0 blur-2xl bg-orange-500/20 rounded-full animate-pulse" />
         </motion.div>
         <div className="flex flex-col items-center gap-4">
           <div className="w-48 h-1 bg-white/5 rounded-full overflow-hidden">
             <motion.div 
-              className="h-full bg-blue-500"
+              className="h-full bg-orange-500"
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
               transition={{ duration: 1.5, ease: "easeInOut" }}
@@ -1863,7 +1863,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white selection:bg-blue-500/30 dot-grid overflow-x-hidden relative w-full">
+    <div className="min-h-screen bg-[#050505] text-white selection:bg-orange-500/30 dot-grid overflow-x-hidden relative w-full">
       <ScrollProgress />
       <Navbar />
       <main className="relative">
