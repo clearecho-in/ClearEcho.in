@@ -17,22 +17,25 @@ app.use((req, res, next) => {
 });
 
 // ── Nodemailer transporter ────────────────────────────────────────────────────
+const cleanEnv = (val) => (val || '').replace(/^["']|["']$/g, '').trim();
+
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: process.env.SMTP_SECURE === 'true', // true = 465, false = other ports
+  host: cleanEnv(process.env.SMTP_HOST) || 'smtp.gmail.com',
+  port: parseInt(cleanEnv(process.env.SMTP_PORT)) || 587,
+  secure: cleanEnv(process.env.SMTP_SECURE) === 'true', // true = 465, false = other ports
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
+    user: cleanEnv(process.env.SMTP_USER),
+    pass: cleanEnv(process.env.SMTP_PASS),
   },
+  connectionTimeout: 10000, // Important: Don't hang forever if connection fails
 });
 
-const recips = (process.env.NOTIFY_EMAIL || 'tanushsharma@clearecho.in')
+const recips = (cleanEnv(process.env.NOTIFY_EMAIL) || 'tanushsharma@clearecho.in')
   .split(',')
   .map(email => email.trim());
 
-const NOTIFY_EMAIL = process.env.NOTIFY_EMAIL || 'tanushsharma@clearecho.in';
-const FROM_EMAIL   = process.env.SMTP_USER || 'noreply@clearecho.in';
+const NOTIFY_EMAIL = cleanEnv(process.env.NOTIFY_EMAIL) || 'tanushsharma@clearecho.in';
+const FROM_EMAIL   = cleanEnv(process.env.SMTP_USER) || 'noreply@clearecho.in';
 
 // ── Helper ────────────────────────────────────────────────────────────────────
 async function sendMail(subject, html, text, customerName = 'System') {
