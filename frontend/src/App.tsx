@@ -561,7 +561,7 @@ const AIVisibility = () => {
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="relative mt-8 md:mt-0"
+            className="relative mt-14 md:mt-6"
           >
             <div className="glass-card rounded-2xl md:rounded-3xl p-4 md:p-6 shadow-2xl">
               {/* Dashboard Header */}
@@ -624,7 +624,7 @@ const AIVisibility = () => {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-xl border border-gray-100 flex items-center gap-2 md:gap-3"
+              className="absolute -top-10 right-2 md:-top-12 md:right-4 z-10 bg-white p-3 md:p-4 rounded-xl md:rounded-2xl shadow-xl border border-gray-100 flex items-center gap-2 md:gap-3"
             >
               <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-green-100 flex items-center justify-center text-green-600">
                 <Zap size={16} className="md:w-[20px] md:h-[20px]" />
