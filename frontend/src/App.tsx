@@ -3,23 +3,23 @@ import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionV
 import { Toaster, toast } from 'sonner';
 
 const ClearEchoLogo = ({ className }: { className?: string }) => (
-  <img 
+  <img
     src={`${import.meta.env.BASE_URL}logo.png`}
-    alt="ClearEcho Logo" 
-    className={className} 
+    alt="ClearEcho Logo"
+    className={className}
     style={{ objectFit: 'contain' }}
   />
 );
 
-import { 
-  MessageSquare, 
-  Zap, 
-  Shield, 
-  ArrowRight, 
-  Calendar, 
-  Mail, 
-  Phone, 
-  MapPin, 
+import {
+  MessageSquare,
+  Zap,
+  Shield,
+  ArrowRight,
+  Calendar,
+  Mail,
+  Phone,
+  MapPin,
   CheckCircle2,
   Menu,
   X,
@@ -43,7 +43,7 @@ import {
 } from 'lucide-react';
 
 const SectionLabel = ({ number, text }: { number: string; text: string }) => (
-  <motion.div 
+  <motion.div
     initial={{ opacity: 0, x: -20 }}
     whileInView={{ opacity: 1, x: 0 }}
     viewport={{ once: true }}
@@ -89,10 +89,10 @@ const Navbar = () => {
   const handleBookNow = async (e: React.MouseEvent) => {
     e.preventDefault();
     setIsBooking(true);
-    
+
     // Simulate a quick preparation/loading state
     await new Promise(resolve => setTimeout(resolve, 800));
-    
+
     setIsBooking(false);
     const element = document.getElementById('appointment');
     if (element) {
@@ -109,19 +109,17 @@ const Navbar = () => {
   ];
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? "py-4" : "py-6"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "py-4" : "py-6"
+        }`}
     >
-      <div className={`max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between transition-all duration-500 ${
-        isScrolled 
-          ? "bg-black/40 backdrop-blur-2xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] mx-2 sm:mx-4 md:mx-auto" 
+      <div className={`max-w-7xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between transition-all duration-500 ${isScrolled
+          ? "bg-black/40 backdrop-blur-2xl border border-white/10 rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.5)] mx-2 sm:mx-4 md:mx-auto"
           : "bg-transparent border-transparent"
-      }`}>
+        }`}>
         <div className="flex items-center gap-3 pl-2">
           <div className="relative">
             <ClearEchoLogo className="w-11 h-11 md:w-14 md:h-14" />
@@ -134,10 +132,10 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-4 lg:gap-8">
           {navLinks.map((link) => (
-            <motion.a 
-              key={link.id} 
-              href={link.href} 
-              whileHover={{ 
+            <motion.a
+              key={link.id}
+              href={link.href}
+              whileHover={{
                 scale: 1.05,
                 y: -2,
                 color: "rgb(255, 255, 255)",
@@ -149,7 +147,7 @@ const Navbar = () => {
             >
               <span className="text-[9px] lg:text-[10px] font-black text-orange-500 group-hover:text-orange-400 transition-colors tracking-tighter">{link.id}</span>
               <span>{link.name}</span>
-              <motion.div 
+              <motion.div
                 className="absolute -bottom-1 left-0 right-0 h-[2px] bg-orange-500 rounded-full origin-left"
                 initial={{ scaleX: 0 }}
                 whileHover={{ scaleX: 1 }}
@@ -160,10 +158,10 @@ const Navbar = () => {
         </div>
 
         <div className="hidden lg:flex items-center gap-3 lg:gap-4 pr-2">
-          <motion.button 
+          <motion.button
             onClick={handleBookNow}
             disabled={isBooking}
-            whileHover={{ 
+            whileHover={{
               scale: 1.05,
               y: -2,
               boxShadow: "0 10px 25px rgba(255, 69, 0, 0.4)",
@@ -194,7 +192,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.95, y: -20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -20 }}
@@ -202,9 +200,9 @@ const Navbar = () => {
           >
             <div className="px-6 py-8 space-y-6">
               {navLinks.map((link) => (
-                <a 
-                  key={link.id} 
-                  href={link.href} 
+                <a
+                  key={link.id}
+                  href={link.href}
                   onClick={() => setIsOpen(false)}
                   className="flex items-center gap-4 text-lg font-bold text-gray-400 hover:text-white transition-colors"
                 >
@@ -213,7 +211,7 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="pt-4">
-                <button 
+                <button
                   onClick={(e) => {
                     setIsOpen(false);
                     handleBookNow(e as any);
@@ -255,8 +253,8 @@ const MentionsTicker = () => {
     <div className="bg-orange-500/5 border-y border-white/5 py-4 overflow-hidden relative">
       <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-10" />
       <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-10" />
-      
-      <motion.div 
+
+      <motion.div
         animate={{ x: [0, -1000] }}
         transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
         className="flex whitespace-nowrap gap-12 items-center"
@@ -279,28 +277,28 @@ const FloatingLogoItem = ({ logo, scrollYProgress }: { logo: any; scrollYProgres
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0 }}
-      animate={{ 
+      animate={{
         opacity: [0.1, 0.4, 0.1],
         scale: [1, 1.1, 1],
         y: [0, -30, 0],
         x: [0, 15, 0],
       }}
-      style={{ 
-        top: logo.top, 
+      style={{
+        top: logo.top,
         left: logo.left,
         translateY: smoothY
       }}
-      transition={{ 
-        duration: 10 + Math.random() * 5, 
-        repeat: Infinity, 
+      transition={{
+        duration: 10 + Math.random() * 5,
+        repeat: Infinity,
         delay: logo.delay,
         ease: "easeInOut"
       }}
       className="absolute z-0"
     >
-      <img 
-        src={logo.src} 
-        alt={logo.alt} 
+      <img
+        src={logo.src}
+        alt={logo.alt}
         className={`${logo.size} object-contain opacity-100 transition-all duration-500 ${logo.className || ''}`}
         referrerPolicy="no-referrer"
       />
@@ -365,17 +363,17 @@ const Hero = () => {
   const smoothY3 = useSpring(y3, { stiffness: 100, damping: 30 });
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative pt-40 pb-20 md:pt-48 md:pb-32 overflow-hidden atmospheric-bg min-h-screen flex flex-col items-center justify-center p-4 md:p-6"
     >
       <FloatingLogos scrollYProgress={scrollYProgress} />
-      
-      <motion.div 
+
+      <motion.div
         style={{ y: smoothY1, opacity, scale }}
         className="max-w-4xl mx-auto px-6 text-center relative z-10"
       >
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -384,8 +382,8 @@ const Hero = () => {
             <Zap size={14} />
             <span>Community Authority Engine</span>
           </div>
-          
-          <motion.h1 
+
+          <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
@@ -394,8 +392,8 @@ const Hero = () => {
             Dominate the web <br className="hidden sm:block" />
             Starting with Reddit
           </motion.h1>
-          
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
@@ -403,16 +401,16 @@ const Hero = () => {
           >
             We turn community trust into brand authority. Scale your presence from Reddit to the entire social web and ensure AI models like ChatGPT recommend you first.
           </motion.p>
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
             className="flex flex-wrap justify-center gap-4 md:gap-6 mt-8 md:mt-12"
           >
-            <motion.a 
-              href="#appointment" 
-              whileHover={{ 
+            <motion.a
+              href="#appointment"
+              whileHover={{
                 scale: 1.05,
                 y: -2,
                 boxShadow: "0 10px 25px rgba(255, 69, 0, 0.4)",
@@ -430,7 +428,7 @@ const Hero = () => {
 
         {/* Floating Glass Cards */}
         <div className="mt-12 md:mt-24 grid sm:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto px-4 sm:px-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
@@ -450,7 +448,7 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.7, ease: "easeOut" }}
@@ -499,9 +497,9 @@ const Hero = () => {
       </motion.div>
 
       {/* Horizon Glow */}
-      <motion.div 
+      <motion.div
         style={{ y: smoothY3, opacity: useTransform(scrollYProgress, [0, 0.5], [0.6, 0]) }}
-        className="absolute bottom-0 left-0 right-0 h-[50vh] horizon-glow -z-10" 
+        className="absolute bottom-0 left-0 right-0 h-[50vh] horizon-glow -z-10"
       />
     </section>
   );
@@ -534,7 +532,7 @@ const AIVisibility = () => {
             <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-6 md:mb-8 leading-relaxed">
               When people ask AI for advice, they trust the answers they get. We make sure your brand is the one AI recommends by building your authority on Reddit.
             </p>
-            
+
             <div className="space-y-5 md:space-y-6">
               <div className="flex items-start gap-4">
                 <div className="w-9 h-9 md:w-10 md:h-10 rounded-full bg-orange-500/10 flex items-center justify-center text-orange-400 shrink-0">
@@ -677,10 +675,10 @@ const WhyReddit = () => {
             <p className="text-gray-400 text-sm md:text-lg mb-8 md:mb-10 leading-relaxed">
               Reddit is the only place where you can build deep trust with your audience. We use Reddit as your launchpad, then expand your reach across the entire social web.
             </p>
-            
+
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 lg:gap-8">
               {reasons.map((reason, i) => (
-                <motion.div 
+                <motion.div
                   key={i}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -689,7 +687,7 @@ const WhyReddit = () => {
                   className="group glass-card p-5 md:p-6 rounded-2xl border-white/5 hover:border-orange-500/20 relative"
                 >
                   <CornerAccent />
-                  <motion.div 
+                  <motion.div
                     whileHover={{ scale: 1.15, rotate: 8, boxShadow: "0 0 20px rgba(255, 69, 0, 0.3)" }}
                     transition={{ type: "spring", stiffness: 300, damping: 15 }}
                     className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-white/5 flex items-center justify-center mb-4 md:mb-6 group-hover:bg-orange-500/20 transition-colors cursor-pointer"
@@ -705,9 +703,9 @@ const WhyReddit = () => {
 
           <div className="md:w-1/2 relative mt-8 md:mt-0">
             <div className="relative rounded-2xl md:rounded-3xl overflow-hidden glass-card">
-              <img 
-                src="https://picsum.photos/seed/social-media-marketing/1000/1200" 
-                alt="Social Media Marketing Strategy" 
+              <img
+                src="https://picsum.photos/seed/social-media-marketing/1000/1200"
+                alt="Social Media Marketing Strategy"
                 className="w-full h-auto opacity-80"
                 referrerPolicy="no-referrer"
               />
@@ -796,7 +794,7 @@ const RedditShowcase = () => {
                   </span>
                 )}
               </div>
-              
+
               <h3 className="text-xl font-bold mb-1 text-white group-hover:text-orange-400 transition-colors">{sub.name}</h3>
               <div className="flex items-center gap-4 text-sm text-gray-500 mb-6">
                 <div className="flex items-center gap-1">
@@ -815,7 +813,7 @@ const RedditShowcase = () => {
                   <span className="text-green-400">+18.4%</span>
                 </div>
                 <div className="mt-2 w-full h-1 bg-white/5 rounded-full overflow-hidden">
-                  <motion.div 
+                  <motion.div
                     initial={{ width: 0 }}
                     whileInView={{ width: '75%' }}
                     transition={{ duration: 1, delay: 0.5 }}
@@ -894,14 +892,14 @@ const RedditThreadSimulation = () => {
               <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white">
                 <MessageSquare size={16} />
               </div>
-              <span className="text-sm font-bold text-white">r/marketing • Posted by u/ClearEcho_Bot</span>
+              <span className="text-sm font-bold text-white">r/marketing â€¢ Posted by u/ClearEcho_Bot</span>
             </div>
             <button className="px-4 py-1.5 bg-orange-500 text-white text-xs font-bold rounded-full hover:bg-orange-600 transition-all">
               Join Discussion
             </button>
           </div>
 
-        <div className="p-4 sm:p-8 space-y-6 md:space-y-8">
+          <div className="p-4 sm:p-8 space-y-6 md:space-y-8">
             {comments.map((comment, i) => (
               <div key={i} className="space-y-4 md:space-y-6">
                 <div className="flex gap-3 md:gap-4">
@@ -912,7 +910,7 @@ const RedditThreadSimulation = () => {
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1 md:mb-2">
                       <span className="text-xs md:text-sm font-bold text-white">u/{comment.user}</span>
-                      <span className="text-[10px] md:text-xs text-gray-500">• {comment.time}</span>
+                      <span className="text-[10px] md:text-xs text-gray-500">â€¢ {comment.time}</span>
                     </div>
                     <p className="text-gray-300 text-sm md:text-base leading-relaxed">{comment.content}</p>
                   </div>
@@ -920,7 +918,7 @@ const RedditThreadSimulation = () => {
 
                 <div className="ml-3 sm:ml-8 md:ml-12 space-y-4 md:space-y-6 border-l-2 border-white/5 pl-3 md:pl-6">
                   {comment.replies.map((reply, j) => (
-                    <motion.div 
+                    <motion.div
                       key={j}
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -937,7 +935,7 @@ const RedditThreadSimulation = () => {
                           <div className="flex flex-wrap items-center gap-1.5 md:gap-2 mb-1 md:mb-2">
                             <span className="text-[11px] md:text-sm font-bold text-white">u/{reply.user}</span>
                             {reply.isHighlighted && <span className="px-1 py-0.5 rounded bg-orange-500/20 text-orange-400 text-[7px] md:text-[10px] font-bold uppercase">Brand Advocate</span>}
-                            <span className="text-[9px] md:text-xs text-gray-500">• {reply.time}</span>
+                            <span className="text-[9px] md:text-xs text-gray-500">â€¢ {reply.time}</span>
                           </div>
                           <p className="text-gray-300 text-[10px] md:text-sm leading-relaxed">{reply.content}</p>
                         </div>
@@ -1195,10 +1193,10 @@ const Features = () => {
             We simplify your growth by starting where people trust most: Reddit. Then, we scale you everywhere else.
           </p>
         </div>
-        
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {features.map((f, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1249,7 +1247,7 @@ const FAQSection = () => {
     },
     {
       question: "How do you measure success?",
-      answer: "We track several key metrics: Reddit mention volume, sentiment analysis, upvote velocity, and most importantly, 'AI Citation Rate'—how often your brand appears in AI-generated answers for relevant queries."
+      answer: "We track several key metrics: Reddit mention volume, sentiment analysis, upvote velocity, and most importantly, 'AI Citation Rate'â€”how often your brand appears in AI-generated answers for relevant queries."
     },
     {
       question: "Can ClearEcho help with crisis management?",
@@ -1264,10 +1262,10 @@ const FAQSection = () => {
         <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold mb-8 md:mb-12 text-white text-center p-2">
           Common Questions
         </h2>
-        
+
         <div className="space-y-4">
           {faqs.map((faq, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -1275,7 +1273,7 @@ const FAQSection = () => {
               viewport={{ once: true }}
               className="glass-card rounded-2xl md:rounded-3xl overflow-hidden border-white/5"
             >
-              <button 
+              <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
                 className="w-full p-6 md:p-8 flex items-center justify-between text-left transition-colors hover:bg-white/5"
               >
@@ -1286,7 +1284,7 @@ const FAQSection = () => {
                   <ChevronDown size={20} />
                 </div>
               </button>
-              
+
               <AnimatePresence>
                 {openIndex === i && (
                   <motion.div
@@ -1310,46 +1308,11 @@ const FAQSection = () => {
 };
 
 const AppointmentSection = () => {
-  const [formState, setFormState] = useState({ name: '', email: '', date: '', message: '' });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [activeTab, setActiveTab] = useState<'link1' | 'link2'>('link1');
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    try {
-      const API_URL = import.meta.env.VITE_API_URL || '';
-      const response = await fetch(`${API_URL}/api/appointment`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formState),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to submit appointment request.');
-      }
-
-      setIsSubmitting(false);
-      setSubmitted(true);
-      toast.success("Appointment requested successfully!", {
-        description: "We'll get back to you within 24 hours.",
-      });
-      
-      // Reset form state
-      setFormState({ name: '', email: '', date: '', message: '' });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => setSubmitted(false), 5000);
-    } catch (error) {
-      console.error('Error submitting appointment:', error);
-      setIsSubmitting(false);
-      toast.error("Failed to send request.", {
-        description: "Please try again or contact us directly.",
-      });
-    }
+  const calendlyLinks = {
+    link1: "https://calendly.com/shivprasad-clearecho/30min",
+    link2: "https://calendly.com/tanushsharma-clearecho/30min"
   };
 
   return (
@@ -1360,9 +1323,9 @@ const AppointmentSection = () => {
           <div className="md:w-1/2 p-6 sm:p-10 lg:p-20 text-white flex flex-col justify-center">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold mb-4 md:mb-6">Ready to scale your brand?</h2>
             <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-6 md:mb-8">
-              Book a 15-minute strategy session to learn how we can dominate Reddit and boost your AI visibility across the web.
+              Choose the meeting type that fits your needs best. We offer different sessions to help you dominate Reddit and boost your AI visibility.
             </p>
-            <ul className="space-y-3 md:space-y-4">
+            <ul className="space-y-3 md:space-y-4 mb-8">
               {['Reddit growth roadmap', 'AI visibility audit', 'Multi-channel content plan'].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-gray-300 text-xs sm:text-sm md:text-base">
                   <CheckCircle2 size={16} className="text-orange-400 md:w-[20px] md:h-[20px]" />
@@ -1370,72 +1333,33 @@ const AppointmentSection = () => {
                 </li>
               ))}
             </ul>
+
+            {/* Calendly Tabs */}
+            <div className="flex flex-col sm:flex-row gap-3 mt-4">
+              <button
+                onClick={() => setActiveTab('link1')}
+                className={`px-6 py-3 rounded-xl font-bold transition-all text-sm text-center ${activeTab === 'link1' ? 'bg-orange-500 text-white shadow-[0_0_20px_rgba(249,115,22,0.3)]' : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'}`}
+              >
+                Meet with Shivprasad
+              </button>
+              <button
+                onClick={() => setActiveTab('link2')}
+                className={`px-6 py-3 rounded-xl font-bold transition-all text-sm text-center ${activeTab === 'link2' ? 'bg-orange-500 text-white shadow-[0_0_20px_rgba(249,115,22,0.3)]' : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'}`}
+              >
+                Meet with Tanush
+              </button>
+            </div>
           </div>
-          
-          <div className="md:w-1/2 p-4 sm:p-8 lg:p-12 bg-white/5">
-            <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-2xl">
-              {submitted ? (
-                <div className="text-center py-8 md:py-12">
-                  <div className="w-12 h-12 md:w-16 md:h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
-                    <CheckCircle2 size={24} className="md:w-[32px] md:h-[32px]" />
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-bold mb-2 text-black">Appointment Requested!</h3>
-                  <p className="text-sm md:text-base text-gray-600">We'll get back to you within 24 hours to confirm your slot.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4">
-                  <div>
-                    <label className="block text-xs md:text-sm font-semibold mb-1.5 md:mb-2 text-black">Full Name</label>
-                    <input 
-                      required
-                      type="text" 
-                      placeholder="John Doe"
-                      className="w-full px-4 py-2.5 md:py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all text-black text-sm md:text-base"
-                      value={formState.name}
-                      onChange={(e) => setFormState({...formState, name: e.target.value})}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs md:text-sm font-semibold mb-1.5 md:mb-2 text-black">Work Email</label>
-                    <input 
-                      required
-                      type="email" 
-                      placeholder="john@company.com"
-                      className="w-full px-4 py-2.5 md:py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all text-black text-sm md:text-base"
-                      value={formState.email}
-                      onChange={(e) => setFormState({...formState, email: e.target.value})}
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs md:text-sm font-semibold mb-1.5 md:mb-2 text-black">Preferred Date</label>
-                    <input 
-                      required
-                      type="date"
-                      min={new Date().toISOString().split('T')[0]}
-                      className="w-full px-4 py-2.5 md:py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all text-black text-sm md:text-base"
-                      value={formState.date}
-                      onChange={(e) => setFormState({...formState, date: e.target.value})}
-                    />
-                  </div>
-                  <button 
-                    type="submit" 
-                    disabled={isSubmitting}
-                    className="w-full py-3.5 md:py-4 bg-black text-white font-bold rounded-xl hover:bg-gray-800 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed text-sm md:text-base"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 size={16} className="animate-spin md:w-[18px] md:h-[18px]" />
-                        Processing...
-                      </>
-                    ) : (
-                      <>
-                        <Calendar size={16} className="md:w-[18px] md:h-[18px]" />
-                        Book My Slot
-                      </>
-                    )}
-                  </button>
-                </form>
-              )}
+
+          <div className="md:w-1/2 p-4 sm:p-8 lg:p-12 bg-white/5 flex flex-col justify-center">
+            <div className="bg-white rounded-2xl md:rounded-3xl p-2 md:p-4 shadow-2xl overflow-hidden h-[600px] w-full">
+              <iframe
+                src={calendlyLinks[activeTab]}
+                width="100%"
+                height="100%"
+                frameBorder="0"
+                title="Schedule an Appointment"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -1452,7 +1376,7 @@ const ContactSection = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       const API_URL = import.meta.env.VITE_API_URL || '';
       const response = await fetch(`${API_URL}/api/contact`, {
@@ -1470,11 +1394,11 @@ const ContactSection = () => {
       setIsSubmitting(false);
       setSubmitted(true);
       setFormState({ firstName: '', lastName: '', email: '', message: '' });
-      
+
       toast.success("Message sent successfully!", {
         description: "We'll get back to you shortly.",
       });
-      
+
       // Reset success message after 5 seconds
       setTimeout(() => setSubmitted(false), 5000);
     } catch (error) {
@@ -1496,7 +1420,7 @@ const ContactSection = () => {
             <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-8 md:mb-10">
               Have questions about our platform or enterprise solutions? Our team is here to help.
             </p>
-            
+
             <div className="space-y-6 md:space-y-8">
               <div className="flex items-start gap-4">
                 <div className="w-9 h-9 md:w-12 md:h-12 rounded-xl bg-white/5 flex items-center justify-center text-orange-400 shrink-0">
@@ -1510,7 +1434,7 @@ const ContactSection = () => {
 
             </div>
           </div>
-          
+
           <div className="glass-card p-6 md:p-8 rounded-2xl md:rounded-3xl relative">
             <CornerAccent />
             {submitted ? (
@@ -1526,46 +1450,46 @@ const ContactSection = () => {
                 <div className="grid sm:grid-cols-2 gap-4 md:gap-6">
                   <div>
                     <label className="block text-xs md:text-sm font-semibold mb-1.5 md:mb-2 text-white">First Name</label>
-                    <input 
+                    <input
                       required
-                      type="text" 
+                      type="text"
                       value={formState.firstName}
-                      onChange={(e) => setFormState({...formState, firstName: e.target.value})}
-                      className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500 text-white text-sm md:text-base" 
+                      onChange={(e) => setFormState({ ...formState, firstName: e.target.value })}
+                      className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500 text-white text-sm md:text-base"
                     />
                   </div>
                   <div>
                     <label className="block text-xs md:text-sm font-semibold mb-1.5 md:mb-2 text-white">Last Name</label>
-                    <input 
+                    <input
                       required
-                      type="text" 
+                      type="text"
                       value={formState.lastName}
-                      onChange={(e) => setFormState({...formState, lastName: e.target.value})}
-                      className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500 text-white text-sm md:text-base" 
+                      onChange={(e) => setFormState({ ...formState, lastName: e.target.value })}
+                      className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500 text-white text-sm md:text-base"
                     />
                   </div>
                 </div>
                 <div>
                   <label className="block text-xs md:text-sm font-semibold mb-1.5 md:mb-2 text-white">Email</label>
-                  <input 
+                  <input
                     required
-                    type="email" 
+                    type="email"
                     value={formState.email}
-                    onChange={(e) => setFormState({...formState, email: e.target.value})}
-                    className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500 text-white text-sm md:text-base" 
+                    onChange={(e) => setFormState({ ...formState, email: e.target.value })}
+                    className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500 text-white text-sm md:text-base"
                   />
                 </div>
                 <div>
                   <label className="block text-xs md:text-sm font-semibold mb-1.5 md:mb-2 text-white">Message</label>
-                  <textarea 
+                  <textarea
                     required
-                    rows={4} 
+                    rows={4}
                     value={formState.message}
-                    onChange={(e) => setFormState({...formState, message: e.target.value})}
+                    onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                     className="w-full px-4 py-2.5 md:py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-orange-500 text-white text-sm md:text-base"
                   ></textarea>
                 </div>
-                <button 
+                <button
                   disabled={isSubmitting}
                   className="w-full py-3.5 md:py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed text-sm md:text-base"
                 >
@@ -1599,25 +1523,25 @@ const Footer = () => {
             <ClearEchoLogo className="w-11 h-11" />
             <span className="text-xl font-display font-extrabold text-white tracking-tight">ClearEcho</span>
           </div>
-          
+
           <div className="flex items-center gap-8 text-sm text-gray-500">
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
-            <button 
+            <button
               onClick={() => setShowPrivacy(true)}
               className="hover:text-white transition-colors cursor-pointer"
             >
               Privacy
             </button>
-            <button 
+            <button
               onClick={() => setShowTerms(true)}
               className="hover:text-white transition-colors cursor-pointer"
             >
               Terms
             </button>
           </div>
-          
+
           <p className="text-sm text-gray-500">
-            © {new Date().getFullYear()} ClearEcho.
+            Â© {new Date().getFullYear()} ClearEcho.
           </p>
         </div>
       </div>
@@ -1647,7 +1571,7 @@ const Modal = ({ isOpen, onClose, title, children }: { isOpen: boolean; onClose:
         >
           <div className="p-4 md:p-6 border-b border-white/5 flex items-center justify-between bg-[#0D0D0D]">
             <h3 className="text-lg md:text-xl font-bold text-white">{title}</h3>
-            <button 
+            <button
               onClick={onClose}
               className="p-2 rounded-full hover:bg-white/5 text-gray-400 hover:text-white transition-all"
             >
@@ -1677,7 +1601,7 @@ const PrivacyModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => voi
         <h4 className="text-white font-bold mb-3 uppercase tracking-wider text-sm">1. Information We Collect</h4>
         <p className="mb-4">We collect only the data necessary to provide and improve our services. This includes:</p>
         <ul className="list-disc pl-5 space-y-2">
-                  <li><strong>Account & Contact Information:</strong> Name, email address, and details provided during appointment bookings or audit requests.</li>
+          <li><strong>Account & Contact Information:</strong> Name, email address, and details provided during appointment bookings or audit requests.</li>
           <li><strong>Platform Usage:</strong> AI Visibility Audit history, Reddit authority tracking data, and interaction logs.</li>
           <li><strong>Payment Information:</strong> We do not store payment details. All transactions are securely processed via third-party providers (e.g., Stripe).</li>
           <li><strong>Technical Data:</strong> Browser type, device info, and IP address for security and platform optimization.</li>
@@ -1739,7 +1663,7 @@ const TermsModal = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void 
   <Modal isOpen={isOpen} onClose={onClose} title="Terms of Service">
     <div className="space-y-6">
       <p>By accessing ClearEcho, you agree to the following terms. Please read them carefully.</p>
-      
+
       <section>
         <h4 className="text-white font-bold mb-3 uppercase tracking-wider text-sm">1. Service Description</h4>
         <p>ClearEcho provides AI visibility auditing, Reddit authority building, and competitor tracking services. We do not guarantee specific rankings but use industry-best practices to improve your brand's AI visibility.</p>
@@ -1845,7 +1769,7 @@ export default function App() {
         </motion.div>
         <div className="flex flex-col items-center gap-4">
           <div className="w-48 h-1 bg-white/5 rounded-full overflow-hidden">
-            <motion.div 
+            <motion.div
               className="h-full bg-orange-500"
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
