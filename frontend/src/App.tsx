@@ -1311,8 +1311,8 @@ const AppointmentSection = () => {
   const [activeTab, setActiveTab] = useState<'link1' | 'link2'>('link1');
 
   const calendlyLinks = {
-    link1: "https://calendly.com/shivprasad-clearecho/30min",
-    link2: "https://calendly.com/tanushsharma-clearecho/30min"
+    link1: "https://calendly.com/shivprasad-clearecho/30min?embed_type=Inline&hide_gdpr_banner=1",
+    link2: "https://calendly.com/tanushsharma-clearecho/30min?embed_type=Inline&hide_gdpr_banner=1"
   };
 
   return (
@@ -1359,6 +1359,7 @@ const AppointmentSection = () => {
                 height="100%"
                 frameBorder="0"
                 title="Schedule an Appointment"
+                allow="camera; microphone; fullscreen"
               ></iframe>
             </div>
           </div>
