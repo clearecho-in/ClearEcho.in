@@ -11,4 +11,4 @@ services:
       - key: RESEND_API_KEY
         sync: false
       - key: NOTIFY_EMAIL
-        value: shivprasad@clearecho.in
+        value: contact@clearecho.in
