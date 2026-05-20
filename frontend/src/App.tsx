@@ -1394,9 +1394,9 @@ const ContactSection = () => {
         <SectionLabel number="11" text="Support" />
         <div className="grid md:grid-cols-2 gap-10 md:gap-16">
           <div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold mb-4 md:mb-6 text-white leading-tight">Get in touch</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-display font-extrabold mb-4 md:mb-6 text-white leading-tight">Have any questions?</h2>
             <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-8 md:mb-10">
-              Have questions about our platform or enterprise solutions? Our team is here to help.
+              Whether you're curious about our services, pricing, or how ClearEcho can grow your brand — drop us a message and we'll get back to you shortly.
             </p>
 
             <div className="space-y-6 md:space-y-8">
