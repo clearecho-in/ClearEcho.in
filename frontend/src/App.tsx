@@ -1308,13 +1308,6 @@ const FAQSection = () => {
 };
 
 const AppointmentSection = () => {
-  const [activeTab, setActiveTab] = useState<'link1' | 'link2'>('link1');
-
-  const calendlyLinks = {
-    link1: "https://calendly.com/shivprasad-clearecho/30min?embed_type=Inline&hide_gdpr_banner=1",
-    link2: "https://calendly.com/tanushsharma-clearecho/30min?embed_type=Inline&hide_gdpr_banner=1"
-  };
-
   return (
     <section id="appointment" className="py-16 md:py-32 bg-[#0A0A0A] border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6">
@@ -1323,7 +1316,7 @@ const AppointmentSection = () => {
           <div className="md:w-1/2 p-6 sm:p-10 lg:p-20 text-white flex flex-col justify-center">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-extrabold mb-4 md:mb-6">Ready to scale your brand?</h2>
             <p className="text-gray-400 text-sm sm:text-base md:text-lg mb-6 md:mb-8">
-              Choose the meeting type that fits your needs best. We offer different sessions to help you dominate Reddit and boost your AI visibility.
+              Book a 30-minute strategy session with us. We'll help you dominate Reddit and boost your AI visibility.
             </p>
             <ul className="space-y-3 md:space-y-4 mb-8">
               {['Reddit growth roadmap', 'AI visibility audit', 'Multi-channel content plan'].map((item, i) => (
@@ -1333,28 +1326,12 @@ const AppointmentSection = () => {
                 </li>
               ))}
             </ul>
-
-            {/* Calendly Tabs */}
-            <div className="flex flex-col sm:flex-row gap-3 mt-4">
-              <button
-                onClick={() => setActiveTab('link1')}
-                className={`px-6 py-3 rounded-xl font-bold transition-all text-sm text-center ${activeTab === 'link1' ? 'bg-orange-500 text-white shadow-[0_0_20px_rgba(249,115,22,0.3)]' : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'}`}
-              >
-                Meet with Shivprasad
-              </button>
-              <button
-                onClick={() => setActiveTab('link2')}
-                className={`px-6 py-3 rounded-xl font-bold transition-all text-sm text-center ${activeTab === 'link2' ? 'bg-orange-500 text-white shadow-[0_0_20px_rgba(249,115,22,0.3)]' : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'}`}
-              >
-                Meet with Tanush
-              </button>
-            </div>
           </div>
 
           <div className="md:w-1/2 p-4 sm:p-8 lg:p-12 bg-white/5 flex flex-col justify-center">
             <div className="bg-white rounded-2xl md:rounded-3xl p-2 md:p-4 shadow-2xl overflow-hidden h-[600px] w-full">
               <iframe
-                src={calendlyLinks[activeTab]}
+                src="https://calendly.com/shivprasad-clearecho/30min?embed_type=Inline&hide_gdpr_banner=1"
                 width="100%"
                 height="100%"
                 frameBorder="0"
