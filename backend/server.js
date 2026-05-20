@@ -42,9 +42,7 @@ async function sendMail(subject, html, text, customerName = 'System', customerEm
   const uniqueId = Math.floor(100000 + Math.random() * 900000);
   const finalSubject = `[#${uniqueId}] ${subject}`;
   
-  // Resend requires verified domains, OR 'onboarding@resend.dev' for testing.
-  // When using onboarding@resend.dev, the "to" email MUST be the one registered on your Resend account!
-  const fromEmail = `ClearEcho <onboarding@resend.dev>`;
+  const fromEmail = `ClearEcho <contact@clearecho.in>`;
 
   let successCount = 0;
   let lastError = null;
